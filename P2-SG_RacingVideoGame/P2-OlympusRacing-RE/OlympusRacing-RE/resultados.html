@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Olympus Racing: Russian Edition</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../libs/jquery.js"></script>
+    <link rel="stylesheet" href="../css/resultados.css">
+    <audio volume="0.3" src="../musica/love.mp3" autoplay loop></audio>
+
+    <script>
+      function getTiempo(){
+      var result = null;
+      result = new URL(location.href).searchParams.get('tiempo');
+      return result;
+      }
+
+      function irMenu(){
+      window.location.replace("http://localhost:8000/OlympusRacing-RE/index.html");
+      }
+
+      $(document).ready(function(){
+      var tiempo = document.getElementById("tiempoEmpleado");
+      tiempo.innerHTML = getTiempo();
+      });
+    </script>
+</head>
+
+<body>
+
+  <div id="contenedor">
+    <div id="resultados">
+      <h1>Carrera finalizada</h1>
+      <h2 id="tituloTiempo">Tiempo empleado: </h2><h2 id="tiempoEmpleado"></h2>
+    </div>
+
+    <div class="container">
+      <a href="index.html" class="btn">Menu</a>
+    </div>
+  </div>
+
+</body>
+</html>

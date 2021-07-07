@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Olympus Racing: Russian Edition</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../libs/three.js"></script>
+    <script type="text/javascript" src="../libs/physi.js"></script>
+    <script type="text/javascript" src="../libs/jquery.js"></script>
+    <script type="text/javascript" src="../libs/GLTFLoader.js"></script>
+    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script type="text/javascript" src="../libs/TrackballControls.js"></script>
+    <script type="text/javascript" src="MyModels.js"></script> 
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="MyPhysiScene.js"></script> 
+    <script type="text/javascript" src="Cronometro.js"></script>
+    <script type="text/javascript" src="Circuito.js"></script>
+    <script type="text/javascript" src="Coche.js"></script>  
+    <link rel="stylesheet" href="../css/base.css">  
+    <audio volume="0.3" src="../musica/opa-bratan.mp3" autoplay loop></audio>
+    <style>
+        body{
+            margin: 0;
+            overflow: hidden; 
+        }
+    </style>
+
+    <script>
+
+    $(document).ready(function(){
+        var btn = document.getElementById("info");
+		var modal = document.getElementById("myModal");
+		var span = document.getElementsByClassName("close")[0];
+					    
+		btn.onclick = function(){
+			modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+	    };
+    })
+
+    
+    </script>
+</head>
+<body>
+  <button type="button" id="info">Informacion</button>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <br>
+      <br>
+      <br>
+      Controles:
+      <ul>
+        <li>W - Desplazarse hacia delante
+        <li>A - Girar hacia la izquierda
+        <li>S - Frenar
+        <li>D - Girar hacia la derecha
+        <li>X - Desplazarse hacia atrás
+        <li>B - Respawn
+        <li>R - Cámara trasera
+      </ul>
+      Para cerrar el panel de ayuda haz click en la pantalla. 
+      ¡Disfruta del juego!
+    </div>
+  </div>
+
+<div class="timer-group">
+  <div class="timer hour">
+    <div class="hand"><span></span></div>
+    <div class="hand"><span></span></div>
+  </div>
+  <div class="timer minute">
+    <div class="hand"><span></span></div>
+    <div class="hand"><span></span></div>
+  </div>
+  <div class="timer second">
+    <div class="hand"><span></span></div>
+    <div class="hand"><span></span></div>
+  </div>
+  <div class="face">
+    <p id="lazy">00:00:00</p>  
+  </div>
+</div>
+
+<div id="vueltas" style="font-size: 20px;
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    margin-left: 300px;
+    padding: 10px;>
+    <h3 id="vueltasText">Vueltas: </h3><h3 id="numVueltas"></h3>
+</div>
+
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
+</body>
+</html>

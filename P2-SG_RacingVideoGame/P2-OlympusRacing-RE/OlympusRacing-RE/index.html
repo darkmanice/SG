@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Olympus Racing: Russian Edition</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="./MyModels.js"></script>
+    <script type="text/javascript" src="../libs/jquery.js"></script>
+    <link rel="stylesheet" href="../css/principal.css">
+    <audio volume="0.3" src="../musica/bochka.mp3" autoplay loop></audio>
+    <script>
+        var modelos = new MyModels();
+
+        //Creamos el formulario de forma dinamica
+
+
+        $(document).ready(function(){
+            var circuitosDiv = document.getElementById("circuitosDiv");
+
+            //Creamos la lista de distintos circuitos
+            for(var i = 0; i < modelos.getNumCircuitos(); i++){
+                var label = document.createElement("label");
+                var input = document.createElement("input");
+                input.className = "circuito" + (i+1);
+                input.type = "radio";
+                input.value = i;
+                input.name = "numCircuito";
+                label.htmlFor = "circuito" + (i+1);
+                circuitosDiv.appendChild(input);
+                circuitosDiv.appendChild(label);
+            }
+
+            var cochesDiv = document.getElementById("cochesDiv");
+
+            //Creamos la lista de los distintos coches
+            for(var i = 0; i < modelos.getNumCoches(); i++){
+                var label = document.createElement("label");
+                var input = document.createElement("input");
+                input.className = "coche" + (i+1);
+                input.type = "radio";
+                input.value = i;
+                input.name = "numCoche";
+                label.htmlFor = "coche" + (i+1);
+                cochesDiv.appendChild(input);
+                cochesDiv.appendChild(label);
+            }
+
+            var ruedasDiv = document.getElementById("ruedasDiv");
+
+            //Creamos la lista de las distintas ruedas
+            for(var i = 0; i < modelos.getNumCoches(); i++){
+                var label = document.createElement("label");
+                var input = document.createElement("input");
+                input.className = "ruedas" + (i+1);
+                input.type = "radio";
+                input.value = i;
+                input.name = "numRuedas";
+                label.htmlFor = "ruedas" + (i+1);
+                ruedasDiv.appendChild(input);
+                ruedasDiv.appendChild(label);
+            }
+        });
+
+
+
+        //Añadimos el CSS de forma dinamica
+
+        var ref = document.querySelector("script");
+
+
+        //CSS para los coches
+      for(var i = 0; i < modelos.getNumCoches(); i++){
+
+        var style = document.createElement("style");
+        var style2 = document.createElement("style");
+
+         style.innerHTML =
+             "input.coche" + (i + 1) + "[type=radio] + label{" +
+             "background-image: url(" + modelos.getImgCoche(i) + ");" +
+             "border-color: white;" +
+             "border-style: solid;" +
+             "height: 200px;" +
+             "width: 200px;" +
+             "display:inline-block;" +
+             "padding: 0 0 0 0px;" +
+             "}"
+
+            ref.parentNode.insertBefore(style,ref);
+
+         style2.innerHTML =
+            "input.coche" + (i + 1) + "[type=radio]:checked + label{" +
+            "border-color: red;" +
+            "border-style: solid;" +
+            "height: 200px;" +
+            "width: 200px;" +
+            "display:inline-block;" +
+            "padding: 0 0 0 0px;"+
+             "}"
+
+        ref.parentNode.insertBefore(style2,ref);
+
+       }
+
+
+
+        //CSS para los circuitos
+      for(var i = 0; i < modelos.getNumCircuitos(); i++){
+
+        var style = document.createElement("style");
+        var style2 = document.createElement("style");
+
+         style.innerHTML =
+             "input.circuito" + (i + 1) + "[type=radio] + label{" +
+             "background-image: url(" + modelos.getImgCircuito(i) + ");" +
+             "border-color: white;" +
+             "border-style: solid;" +
+             "height: 200px;" +
+             "width: 200px;" +
+             "display:inline-block;" +
+             "padding: 0 0 0 0px;" +
+             "}"
+
+            ref.parentNode.insertBefore(style,ref);
+
+         style2.innerHTML =
+            "input.circuito" + (i + 1) + "[type=radio]:checked + label{" +
+            "border-color: red;" +
+            "border-style: solid;" +
+            "height: 200px;" +
+            "width: 200px;" +
+            "display:inline-block;" +
+            "padding: 0 0 0 0px;"+
+             "}"
+
+        ref.parentNode.insertBefore(style2,ref);
+
+       }
+
+        //CSS para las ruedas
+      for(var i = 0; i < modelos.getNumCoches(); i++){
+
+        var style = document.createElement("style");
+        var style2 = document.createElement("style");
+
+         style.innerHTML =
+             "input.ruedas" + (i + 1) + "[type=radio] + label{" +
+             "background-image: url(" + modelos.getImgRueda(i) + ");" +
+             "border-color: white;" +
+             "border-style: solid;" +
+             "height: 200px;" +
+             "width: 200px;" +
+             "display:inline-block;" +
+             "padding: 0 0 0 0px;" +
+             "}"
+
+            ref.parentNode.insertBefore(style,ref);
+
+         style2.innerHTML =
+            "input.ruedas" + (i + 1) + "[type=radio]:checked + label{" +
+            "border-color: red;" +
+            "border-style: solid;" +
+            "height: 200px;" +
+            "width: 200px;" +
+            "display:inline-block;" +
+            "padding: 0 0 0 0px;"+
+             "}"
+
+        ref.parentNode.insertBefore(style2,ref);
+
+       }
+
+        function sendData(){
+            var circuito = 0;
+            var coche = 0;
+            var ruedas = 0;
+            var circuitos = document.getElementsByName("numCircuito");
+            var coches = document.getElementsByName("numCoche");
+            var listaRuedas = document.getElementsByName("numRuedas");
+
+            for(var i = 0; i < modelos.getNumCircuitos(); i++){
+                if(circuitos[i].checked === true)
+                    circuito = circuitos[i].value;
+            }
+
+            for(var i = 0; i < modelos.getNumCoches(); i++){
+                if(coches[i].checked === true)
+                    coche = coches[i].value;
+
+            }
+
+            for(var i = 0; i < modelos.getNumRuedas(); i++){
+                if(listaRuedas[i].checked === true)
+                    ruedas = listaRuedas[i].value;
+
+            }
+
+
+
+window.location.replace("http://localhost:8000/OlympusRacing-RE/OlympusRacingRE.html?" + "circuito=" + circuito + "&" + "coche=" + coche + "&" + "ruedas=" + ruedas);
+        }
+     </script>
+
+</head>
+<body>
+<h1>Olympus Racing: Russian Edition</h1>
+    <form id="formulario" method="GET"  onSubmit="sendData(); return false">
+        <p><input type="submit" value="Jugar" id="boton-jugar"></p>
+        <div class="cajaformularios">
+            <div class="divInput" id="circuitosDiv"><h2>Circuitos</h2></div>
+            <div class="divInput" id="cochesDiv"><h2>Coches</h2></div>
+            <div class="divInput" id="ruedasDiv"><h2>Ruedas</h2></div>
+        </div>
+    </form>
+</body>
+</html>
